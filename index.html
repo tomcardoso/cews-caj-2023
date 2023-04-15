@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Deep dive: Unraveling the Canada Emergency Wage Subsidy</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+		<style>
+			.reveal h1 {
+				text-transform: none;
+				line-height: 1;
+			}
+			.reveal h2,
+			.reveal h3,
+			.reveal h4 {
+				text-transform: none;
+			}
+			.reveal ul {
+				margin: 0;
+			}
+			.reveal li {
+				margin-bottom: 0.5em;
+			}
+			.reveal p {
+				margin: 0;
+				margin-bottom: 0.5em;
+			}
+			.reveal em {
+				opacity: 0.6;
+			}
+			.reveal .font-small {
+				font-size: 0.8em;
+			}
+			.w30 {
+				width: 30%;
+				display: inline-block;
+			}
+			p.heading {
+				font-size: 1.2em;
+				font-weight: bold;
+			}
+			p.small {
+				font-size: 0.5em;
+			}
+			p.color-request {
+				font-size: 0.9em;
+			}
+			span.text-red {
+				color: #e41a1c;
+			}
+			.text-blue {
+				color: #377eb8;
+			}
+			.text-green {
+				color: #4daf4a;
+			}
+			.text-purple {
+				color: #984ea3;
+			}
+			span.highlight-sky {
+				display: inline-block;
+				padding: 0 0.2em;
+				background-color: rgba(137, 202, 211, 0.5);
+			}
+			span.highlight-burgundy {
+				display: inline-block;
+				padding: 0 0.2em;
+				background-color: rgba(133, 46, 87, 0.3);
+			}
+			.pull-left {
+				text-align: left;
+			}
+
+			.grid_2x2 {
+				height: 100%;
+				display: grid;
+				grid-template-columns: repeat(2, minmax(150px, 2fr));
+				grid-template-rows: repeat(2, minmax(150px, 2fr));
+			}
+
+			.grid-item_2x2 {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section style="font-size: 0.8em;">
+					<h1>Unraveling the Canada Emergency Wage Subsidy</h1>
+				</section>
+
+				<section>
+					<h2>About me</h2>
+					<img style="width: auto; height: 35vh; margin-top: 10px;" src="img/tom.jpg" />
+					<p>Tom Cardoso, investigative reporter <br />at The Globe and Mail</p>
+					<p><a href="https://www.twitter.com/tom_cardoso">@tom_cardoso</a></p>
+				</section>
+
+				<section>
+					<p>This is a talk on how journalism and data work together. </p>
+					<p>Specifically, we'll be looking at the Canada Emergency Wage Subsidy.</p>
+				</section>
+
+				<section>
+					<h3>CEWS? WTF?</h3>
+				</section>
+
+				<section>
+					<p>During the early days of the pandemic, the federal government created the Canada Emergency Wage Subsidy, or CEWS.</p>
+					<p>Effectively, the program provided salary rebates for businesses experiencing pandemic-related revenue drops.</p>
+					<p>Cost: Roughly $100-billion.</p>
+				</section>
+
+				<section>
+					<p>But experts said there were some fairly clear design problems with the program.</p>
+				</section>
+
+				<section>
+					<div class="grid_2x2">
+						<img src="img/cews-1.png" class="grid-item_2x2" alt="">
+						<img src="img/cews-2.png" class="grid-item_2x2" alt="">
+						<img src="img/cews-3.png" class="grid-item_2x2" alt="">
+						<img src="img/cews-4.png" class="grid-item_2x2" alt="">
+					</div>
+				</section>
+
+				<section>
+					<p>There must be stories here, even though the data is awful.</p>
+					<p>So…</p>
+				</section>
+
+				<section>
+					<p>Step 1: Get the data.</p>
+					<img src="img/scrape.png" alt="">
+				</section>
+
+				<section>
+					<p>Step 2: What can we do with this?</p>
+					<img src="img/sample.png" alt="">
+				</section>
+
+				<section>
+					<p>A lot!</p>
+					<img style="border: 0.5px solid black; height: 100vh;" src="img/cover.jpg" alt="">
+				</section>
+
+				<section>
+					<img style="height: 60vh;" src="img/cews-story-2.png" alt="">
+				</section>
+
+				<section>
+					<img style="height: 60vh;" src="img/cews-story-3.png" alt="">
+				</section>
+
+				<section>
+					<p>How did we do these stories?</p>
+					<p>We combined datasets. Specifically…</p>
+				</section>
+
+				<section>
+					<ul>
+						<li>A copy of the CEWS registry</li>
+						<li>Statistics Canada data</li>
+						<li>Public company financial statements from SEDAR</li>
+						<li>Data from the Office of the Superintendent of Bankruptcy</li>
+					</ul>
+				</section>
+
+				<section>
+					<p><strong>Statistics Canada</strong></p>
+					<p>Inter-Corporate Ownership database</p>
+					<img src="img/statscan.png" alt="">
+				</section>
+
+				<section>
+					<p>This data was then merged by name against the list of CEWS recipients. We took any companies that were public, or wholly-owned subsidiaries (or sub-sub-sub… etc. subsidiaries) of public companies.</p>
+				</section>
+
+				<section>
+					<p><strong>Financial statements</strong></p>
+					<p>Then, we manually pulled statements from SEDAR, which were analyzed by a team of four reporters</p>
+					<img src="img/tfi.png" style="height: 50vh;" alt="">
+				</section>
+
+				<section>
+					<p><strong>End result</strong></p>
+					<p>A big, messy spreadsheet with findings!</p>
+					<img src="img/checking.png" style="height: 75vh;" alt="">
+				</section>
+
+				<section>
+					<p>Did a similar thing for bankrupt companies. Found many that took pandemic-relief funds despite having declared bankruptcy before the pandemic happened.</p>
+				</section>
+
+				<section>
+					<h2>Findings</h2>
+					<ul>
+						<li>Found 388 public companies (or wholly-owned subsidiaries) which received a combined $3.6-billion in CEWS as of early 2021.</li>
+						<li>List includes some of the biggest companies in the country: Air Canada, BCE Inc., Canadian National Railway Co., Onex Corp., SNC-Lavalin Group Inc. and Suncor Energy Inc.</li>
+					</ul>
+				</section>
+
+				<section>
+					<ul>
+						<li>Nearly a quarter of the companies receiving CEWS had higher revenue in 2020 vs. 2019. If these companies experienced losses, they were fleeting. This wasn't the stated purpose of CEWS.</li>
+						<li>Dozens of companies that declared bankruptcy before the pandemic, with a combined $11-million in debts, took CEWS. Those payments amounted to a direct transfer from the government to creditors.</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Reporting corroborated eaarlier this year by CRA documents shared in the House of Commons</p>
+					<img src="img/corroboration.png" alt="">
+				</section>
+
+				<section>
+					<h3>Questions, discussion, etc.</h3>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				history: true,
+				plugins: [RevealHighlight]
+			});
+		</script>
+	</body>
+</html>
